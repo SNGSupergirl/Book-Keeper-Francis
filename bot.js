@@ -149,7 +149,7 @@ client.on('interactionCreate', async (interaction) => {
         const logEmbed = interaction.message.embeds[0];
         logEmbed.thumbnail = { url: thumbnailUrl };
 
-        await interaction.update({ embeds: [logEmbed], components: [] });
+        await message.editReply({ embeds: [logEmbed], components: [] });
     }
 });
 
