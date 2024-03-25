@@ -159,7 +159,7 @@ client.on('interactionCreate', async (interaction) => {
         logEmbed.thumbnail = { url: thumbnailUrl };
 
         // Edit the reply to show the selected thumbnail
-        await message.update({ embeds: [logEmbed], components: [] });
+        await interaction.update({ embeds: [logEmbed], components: [] });
     }
 });
 
