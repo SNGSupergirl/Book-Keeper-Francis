@@ -108,18 +108,17 @@ async function execute(interaction) {
         { name: 'Location', value: location, inline: true },
         { name: 'Situation', value: situation, inline: true }
     )
-    .setThumbnail(thumbnailUrl) // Set the thumbnail
+    .setThumbnail(thumbnailUrl) 
     .setTimestamp()
     .setFooter({ text: 'Book Keeper Francis', iconURL: 'https://i.imgur.com/AfFp7pu.png' });
 
 
-            // Update the original message with the selected thumbnail
             await interaction.editReply({
                 content: 'Please select a thumbnail:',
                 embeds: [newLogEmbed.setThumbnail(thumbnailUrl)],
                 components: [
                     {
-                        type: 1, // Action Row type
+                        type: 1, 
                         components: [select.toJSON()]
                     }
                 ],
