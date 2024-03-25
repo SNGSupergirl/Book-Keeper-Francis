@@ -61,11 +61,9 @@ async function execute(interaction) {
                     .setValue('medical_transport'),
             );
 
-        // Add select menu to action row
         const actionRow = new ActionRowBuilder()
             .addComponents(select);
 
-        // Initial embed without thumbnail
         const logEmbed = new EmbedBuilder()
             .setColor(0x0099FF)
             .setTitle(`Rescue # ${rescueNumber} - Reported by ${username}`)
@@ -90,11 +88,9 @@ async function execute(interaction) {
             time: 60000,
         });
 
-        // Handle interaction selection
         collector.on('collect', async (interaction) => {
             const selectedThumbnail = interaction.values[0];
 
-            // Define the image URL for the selected thumbnail
             const thumbnailUrls = {
                 'transport': 'https://i.postimg.cc/wMsF30Wb/transport.png',
                 'medical': 'https://i.postimg.cc/fRQqSQQ7/medical.png',
@@ -103,7 +99,7 @@ async function execute(interaction) {
 
             const thumbnailUrl = thumbnailUrls[selectedThumbnail];
 
-            // Create a new embed with the selected thumbnail
+
     const newLogEmbed = new EmbedBuilder()
     .setColor(0x0099FF)
     .setTitle(`Rescue # ${rescueNumber} - Reported by ${username}`)
@@ -128,8 +124,7 @@ async function execute(interaction) {
                     }
                 ],
             });
-
-            // Stop collecting interactions
+            
             collector.stop();
         });
     } catch (error) {
@@ -144,21 +139,17 @@ client.on('interactionCreate', async (interaction) => {
     } else if (interaction.isSelectMenu() && interaction.customId === 'thumbnail_selection') {
         const selectedThumbnail = interaction.values[0]; // Get the selected value from the select menu
 
-        // Define the image URLs for each thumbnail option
         const thumbnailUrls = {
             'transport': 'https://i.postimg.cc/wMsF30Wb/transport.png',
             'medical': 'https://i.postimg.cc/fRQqSQQ7/medical.png',
             'medical_transport': 'https://i.postimg.cc/d1hgmRHG/medicaltransport.png'
         };
 
-        // Get the selected thumbnail URL
         const thumbnailUrl = thumbnailUrls[selectedThumbnail];
 
-        // Update the original message with the thumbnail attached
         const logEmbed = interaction.message.embeds[0];
         logEmbed.thumbnail = { url: thumbnailUrl };
 
-        // Edit the reply to show the selected thumbnail
         await interaction.update({ embeds: [logEmbed], components: [] });
     }
 });
