@@ -135,7 +135,7 @@ async function execute(interaction) {
 client.on('interactionCreate', async (interaction) => {
     if (interaction.isCommand() && interaction.commandName === 'rescuelog') {
         await execute(interaction);
-    } else if (interaction.isSelectMenu() && interaction.customId === 'thumbnail_selection') {
+    } else if (interaction.isStringSelectMenu() && interaction.customId === 'thumbnail_selection') {
         const selectedThumbnail = interaction.values[0]; // Get the selected value from the select menu
 
         const thumbnailUrls = {
